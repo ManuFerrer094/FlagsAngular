@@ -1,4 +1,4 @@
-# CountryApp
+# NgCountries
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.4. You can see the Live Demo in [NgCountries](https://ngcountries.netlify.app/)
 

@@ -33,3 +33,12 @@ nav.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 a.navbar-brand {
   padding-left: 1%;
 }
+
+@media (max-width: 768px) {
+  .nav-link {
+    margin-left: 5%;
+  }
+  a.navbar-brand {
+    padding-left: 5%;
+  }
+}

@@ -1,6 +1,6 @@
 .flag-container {
   margin-top: 10%;
-  max-width: 90%;
+  margin: 0 auto;
 }
 
 .flag-container .row {
@@ -9,8 +9,10 @@
 }
 
 .flag-container .col-md-4 {
-  max-width: 25%;
+  width: 23%;
   box-sizing: border-box;
+  padding: 5px;
+  margin: 1%;
 }
 
 .flag-container .flag-link {
@@ -36,19 +38,21 @@
   border: 1px solid lightgray;
 }
 
+.flag-container .card-body {
+  text-align: center;
+}
+
 .flag-container .card-text {
   margin: 10px 0;
   font-size: 1.2rem;
-  float: left;
 }
 
 @media (max-width: 768px) {
+  .container {
+    min-width: 100%;
+  }
   .flag-container .col-md-4 {
     width: 100%;
     margin: 1%;
   }
-}
-
-img[title] {
-  position: relative;
 }

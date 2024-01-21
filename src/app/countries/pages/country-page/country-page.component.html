@@ -173,7 +173,7 @@
           <ng-container *ngFor="let border of country.borders; let i = index">
             <div class="col-md-4">
               <a [routerLink]="['/countries', 'by', border]" class="country-border">
-                <img [src]="getBorderFlagUrl(border)" [alt]="getCountryName(border)" matTooltip="{{ country.name.common }}" class="flag-image">
+                <img [src]="getBorderFlagUrl(border)" [alt]="getCountryName(border)" matTooltip="{{ border }}" class="flag-image">
               </a>
               <h5>{{ getCountryName(border) }}</h5>
             </div>

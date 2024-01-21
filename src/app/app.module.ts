@@ -6,9 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
-import { PrivacyPolicyPageComponent } from './shared/pages/privacy-policy-page/privacy-policy-page.component';
-import { LegalAdviseComponent } from './shared/pages/legal-advise/legal-advise.component';
-import { ContactPageComponent } from './shared/pages/contact-page/contact-page.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
@@ -21,9 +18,6 @@ import { MatChipsModule } from '@angular/material/chips';
 @NgModule({
   declarations: [
     AppComponent,
-    PrivacyPolicyPageComponent,
-    LegalAdviseComponent,
-    ContactPageComponent
   ],
   imports: [
     BrowserModule.withServerTransition({

@@ -1,41 +1,34 @@
-.flag-container {
-  margin-top: 10%;
-  margin: 0 auto;
-}
-
 .flag-container .row {
   display: flex;
   flex-wrap: wrap;
+  margin: 0 -10px;
 }
 
 .flag-container .col-md-4 {
   width: 23%;
   box-sizing: border-box;
-  padding: 5px;
+  padding: 10px;
   margin: 1%;
+  background-color: #f0f0f0;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.flag-container .col-md-4:hover {
+  background-color: #e0e0e0;
 }
 
 .flag-container .flag-link {
-  display: block;
   text-decoration: none;
   color: inherit;
 }
 
-.flag-container .col-md-4:hover {
-  background-color: #f0f0f0;
-}
-
-.flag-container .card {
-  border: 1px solid #ccc;
-  overflow: hidden;
-  transition: box-shadow 0.3s ease-in-out;
-}
-
 .flag-container .flag-image {
-  width: 240px;
-  height: 120px;
+  width: 220px;
+  height: 110px;
   object-fit: cover;
-  border: 1px solid lightgray;
+  position: relative;
+  top: 15px;
+  left: 25px;
 }
 
 .flag-container .card-body {
@@ -43,8 +36,8 @@
 }
 
 .flag-container .card-text {
-  margin: 10px 0;
   font-size: 1.2rem;
+  margin: 40px;
 }
 
 @media (max-width: 768px) {
@@ -54,5 +47,14 @@
   .flag-container .col-md-4 {
     width: 100%;
     margin: 1%;
+  }
+
+  .flag-container .flag-image {
+    width: 200px;
+    height: 100px;
+    object-fit: cover;
+    position: relative;
+    top: 15px;
+    left: 11px;
   }
 }

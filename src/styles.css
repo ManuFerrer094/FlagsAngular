@@ -7,19 +7,21 @@ body {
 }
 
 .btn-primary {
-  transition: transform 0.3s, filter 0.3s;
-  text-align: center;
-  text-decoration: none;
+  color: #ffffff;
+  background-color: #000000 !important;
+  padding: 10px 20px;
+  border: 1px solid #000000 !important;
+  text-transform: uppercase;
+  font-weight: bold;
   cursor: pointer;
-  border: 2px solid #3498db;
-  color: white;
-  padding: 0px 10px;
-  border-radius: 5px;
-  float: right;
+  border-radius: 0;
+  margin-right: 1%;
+  margin-left: 1%;
+  border-radius: 0 !important;
 }
 
 .btn-primary:hover {
-  filter: brightness(1.5);
+  background-color: #5a5a5a !important;
 }
 
 .overflow-auto {
@@ -39,6 +41,12 @@ p {
   line-height: 1.6;
   color: #333;
 }
+
+.badge.bg-primary.m-1 {
+  background-color: #000000 !important;
+  border-radius: 50;
+}
+
 
 
 

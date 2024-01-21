@@ -41,8 +41,7 @@ body {
 }
 
 button.btn.btn-primary {
-  margin-right: 1%;
-  margin-left: 1%;
+  float: right;
 }
 
 h3 {
@@ -180,6 +179,19 @@ img[title] {
 .dark-mode .footer {
   background-color: var(--footer-bg);
   color: var(--footer-color);
+}
+
+.btn-maps {
+  color: #ffffff;
+  background-color: #000000 !important;
+  padding: 10px 20px;
+  border: 1px solid #000000 !important;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0;
+  border-radius: 0 !important;
+  margin: 1%;
 }
 
 @media (max-width: 767px) {

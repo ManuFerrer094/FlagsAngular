@@ -162,8 +162,8 @@
         [options]="options"
       ></google-map>
 
-      <button (click)="zoomIn()">Zoom in</button>
-      <button (click)="zoomOut()">Zoom out</button>
+      <button (click)="zoomIn()" class="btn-maps">Zoom in</button>
+      <button (click)="zoomOut()" class="btn-maps">Zoom out</button>
         <ng-container *ngIf="isCountryDefined()">
           <h3>Neighboring Countries</h3>
         </ng-container>

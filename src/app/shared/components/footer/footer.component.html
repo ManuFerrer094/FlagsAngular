@@ -1,10 +1,18 @@
 <div class="container">
   <footer class="row row-cols-1 row-cols-md-3 py-5 my-5 border-top footer">
-    <div class="col mb-3">
-      <a href="/" class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none">
-        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-      </a>
-      <p class="text-body-secondary"><a href="https://bento.me/manuelferrer" target="_blank" class="underline">Manuel Ferrer</a> © 2024</p>
+    <div class="col mb-6">
+      <h5>Project Info</h5>
+      <p class="nav-link p-0 text-body-secondary">
+        This website is a Single Page Application (SPA) developed with Angular.
+        Real-time country information is sourced from the <a href="https://restcountries.com/" target="_blank" class="underline">Rest Countries</a> API.
+      </p>
+    </div>
+    <div class="col mb-6">
+      <h5>Connect</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a target="_blank" href="https://github.com/ManuFerrer094/NgCountries-Angular-SPA" routerLinkActive="active" class="nav-link p-0 text-body-secondary">Give me a Star on GitHub</a></li>
+        <li class="nav-item mb-2"><a target="_blank" href="https://www.linkedin.com/in/manuferrer/" routerLinkActive="active" class="nav-link p-0 text-body-secondary">Connect with me on Linkedin</a></li>
+      </ul>
     </div>
     <div class="col mb-6">
       <h5>Countries</h5>
@@ -13,16 +21,6 @@
         <li class="nav-item mb-2"><a routerLink="countries/by-country" routerLinkActive="active" class="nav-link p-0 text-body-secondary">By country</a></li>
         <li class="nav-item mb-2"><a routerLink="countries/by-region" routerLinkActive="active" class="nav-link p-0 text-body-secondary">By region</a></li>
       </ul>
-    </div>
-    <div class="col mb-6">
-      <h5>Information</h5>
-      <p class="nav-item mb-2">
-        This website is a Single Page Application (SPA) developed with Angular.
-
-        Real-time country information is sourced from the <a href="https://restcountries.com/" target="_blank" class="underline">Rest Countries</a> API.
-
-        Thank you for visiting our page. If you have any questions or comments, feel free to connect with me and <a href="mailto:manuferrer094@gmail.com" class="underline">send me a message.</a>
-      </p>
     </div>
   </footer>
 </div>

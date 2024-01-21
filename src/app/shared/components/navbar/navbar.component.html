@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand-lg fixed-top">
+  <a class="navbar-brand" [routerLink]="['/']">Países</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item" routerLink="countries/by-capital" routerLinkActive="active">
+        <a class="nav-link">Por capital</a>
+      </li>
+      <li class="nav-item" routerLink="countries/by-country" routerLinkActive="active">
+        <a class="nav-link">Por país</a>
+      </li>
+      <li class="nav-item" routerLink="countries/by-region" routerLinkActive="active">
+        <a class="nav-link">Por región</a>
+      </li>
+    </ul>
+  </div>
+</nav>

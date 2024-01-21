@@ -1,0 +1,73 @@
+.flag-container {
+  margin-top: 10%;
+}
+
+.flag-container .row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flag-container .col-md-4 {
+  width: 23%;
+  box-sizing: border-box;
+  padding: 5px;
+  margin: 1%;
+}
+
+.flag-container .flag-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.flag-container .col-md-4:hover {
+  background-color: #f0f0f0;
+}
+
+.flag-container .card {
+  border: 1px solid #ccc;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.flag-container .flag-image {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border: 1px solid lightgray;
+}
+
+.flag-container .card-body {
+  text-align: center;
+}
+
+.flag-container .card-text {
+  margin: 10px 0;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .flag-container .col-md-4 {
+    width: 100%;
+    margin: 1%;
+  }
+}
+
+/* Estilo para el tooltip */
+img[title] {
+  position: relative;
+}
+
+/* Estilo del texto del tooltip */
+img[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  white-space: nowrap;
+  z-index: 1;
+  left: 50%;
+  transform: translateX(-50%);
+}

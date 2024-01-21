@@ -1,0 +1,23 @@
+<div class="container">
+  <section class="popular-countries">
+    <h2>Países Populares</h2>
+    <!-- home-page.component.html -->
+    <div class="container flag-container">
+      <div class="row">
+        <div class="col-md-4" *ngFor="let country of countries">
+          <a [routerLink]="['/countries/by', country.cca3]" class="flag-link">
+            <div class="flag-container">
+              <img [src]="country.flags.svg" [alt]="country.name.common" [title]="country.name.common" class="flag-image">
+              <div class="card-body">
+                <h4 class="card-text">{{ country.name.common }}</h4>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="container text-center">
+      <button class="btn btn-primary" (click)="loadMoreCountries()">Ver más</button>
+    </div>
+  </section>
+</div>

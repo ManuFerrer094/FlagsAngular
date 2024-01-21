@@ -6,20 +6,16 @@ body {
   max-width: 90%;
 }
 
-/* Estilo por defecto para las imágenes */
 img {
   transition: transform 0.7s, filter 0.7s !important;
 }
 
-/* Efecto al hacer hover en las imágenes */
 img:hover {
-  filter: brightness(1.2) !important; /* Aumenta el brillo */
+  filter: brightness(1.2) !important;
 }
 
-/* Estilo por defecto para los botones con la clase btn-primary */
 .btn-primary {
   transition: transform 0.3s, filter 0.3s;
-  display: inline-block;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
@@ -33,6 +29,18 @@ img:hover {
 .btn-primary:hover {
   filter: brightness(1.5);
 }
+
+.overflow-auto {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+  .container {
+    margin-top: 10%;
+  }
+}
+
 
 
 

@@ -31,4 +31,9 @@ import { Component } from '@angular/core';
     `,
   ],
 })
-export class NavbarComponent {}
+export class NavbarComponent {
+  collapsed = true;
+  toggleCollapsed(): void {
+    this.collapsed = !this.collapsed;
+  }
+}

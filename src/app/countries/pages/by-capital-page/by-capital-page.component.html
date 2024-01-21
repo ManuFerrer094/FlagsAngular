@@ -1,6 +1,5 @@
 <h2>Por Capital</h2>
 <hr>
-
 <div class="row">
   <div class="col">
     <shared-search-box
@@ -9,11 +8,11 @@
       placeholder="Buscar por capital"></shared-search-box>
   </div>
 </div>
-
 <div class="row">
-  <div class="col">
+  <div class="col overflow-auto">
     <hr>
     <shared-loading-spinner *ngIf="isLoading"></shared-loading-spinner>
     <countries-table [countries]="countries" *ngIf="shouldShowTable()"></countries-table>
   </div>
 </div>
+

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CookieAdvisePageComponent } from './cookie-advise-page.component';
+import { CookieAdvisePageComponent } from './cookie-policy-page.component';
 
 describe('CookieAdvisePageComponent', () => {
   let component: CookieAdvisePageComponent;

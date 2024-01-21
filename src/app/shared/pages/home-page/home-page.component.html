@@ -1,23 +1,42 @@
 <div class="container">
   <section class="popular-countries">
     <h1>Discover the World Through Flags</h1>
-      <p>Explore the fascinating world of flags and global information. Immerse yourself in the rich cultural diversity of each country, learn interesting facts, and discover wonders. Click on the flags to start your informative journey around the world!</p>
+    <p>Explore the fascinating world of flags and global information. Immerse yourself in the rich cultural diversity of each country, learn interesting facts, and discover wonders. Click on the flags to start your informative journey around the world!</p>
     <div class="container flag-container">
       <div class="row">
-        <div class="col-md-4" *ngFor="let country of countries">
+        <section class="filter-options">
+          <mat-form-field>
+            <mat-label>Filter by Population</mat-label>
+            <mat-select (selectionChange)="filterByPopulation($event.value)">
+              <mat-option [value]="true">Greater to Lesser</mat-option>
+              <mat-option [value]="false">Lesser to Greater</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Filter by Region</mat-label>
+            <mat-select (selectionChange)="filterByRegion($event.value)">
+              <mat-option [value]="'Africa'">Africa</mat-option>
+              <mat-option [value]="'Americas'">Americas</mat-option>
+              <mat-option [value]="'Asia'">Asia</mat-option>
+              <mat-option [value]="'Europe'">Europe</mat-option>
+              <mat-option [value]="'Oceania'">Oceania</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </section>
+        <mat-card class="col-md-4" *ngFor="let country of countries">
           <a [routerLink]="['/countries/by', country.cca3]" class="flag-link">
             <div class="flag-container">
-              <img [src]="country.flags.svg" [alt]="country.name.common" [title]="country.name.common" class="flag-image">
-              <div class="card-body">
+              <img [src]="country.flags.svg" [alt]="country.name.common" [matTooltip]="country.name.common" class="flag-image">
+              <mat-card-content class="card-body">
                 <h4 class="card-text">{{ country.name.common }}</h4>
-              </div>
+              </mat-card-content>
             </div>
           </a>
-        </div>
+        </mat-card>
       </div>
     </div>
     <div class="container text-center">
-      <button class="btn btn-primary" (click)="loadMoreCountries()">Ver más</button>
+      <button mat-raised-button color="primary" (click)="loadMoreCountries()">Ver más</button>
     </div>
   </section>
 </div>

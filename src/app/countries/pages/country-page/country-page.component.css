@@ -51,30 +51,46 @@ h3 {
 
 .bg-green {
   background-color: green;
-  color: white;
-  border-radius: 5px;
-  padding: 2px;
+  font-size: .875rem;
+  color: #fff;
+  display: inline-block;
+  padding: 0 0.75em;
+  border-radius: 4px;
+  position: relative;
+  top: -1px;
 }
 
 .bg-red {
   background-color: red;
-  color: white;
-  border-radius: 5px;
-  padding: 2px;
+  font-size: .875rem;
+  color: #fff;
+  display: inline-block;
+  padding: 0 0.75em;
+  border-radius: 4px;
+  position: relative;
+  top: -1px;
 }
 
 .bg-left {
   background-color: #ff6347;
-  color: white;
-  border-radius: 5px;
-  padding: 2px;
+  font-size: .875rem;
+  color: #fff;
+  display: inline-block;
+  padding: 0 0.75em;
+  border-radius: 4px;
+  position: relative;
+  top: -1px;
 }
 
 .bg-right {
   background-color: #00bfff;
-  color: white;
-  border-radius: 5px;
-  padding: 2px;
+  font-size: .875rem;
+  color: #fff;
+  display: inline-block;
+  padding: 0 0.75em;
+  border-radius: 4px;
+  position: relative;
+  top: -1px;
 }
 
 .flag-image {
@@ -231,4 +247,17 @@ img[title] {
   .list-group-item a {
     word-break: break-all;
   }
+
+  .flag-image{
+    object-fit: cover;
+  }
+}
+
+.btn {
+  margin: 1%;
+}
+
+.btn-download {
+  float: right;
+  margin: 1%;
 }

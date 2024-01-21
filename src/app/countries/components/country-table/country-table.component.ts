@@ -7,7 +7,13 @@ import { Country } from '../../interfaces/country';
   styles: [
     `img {
       width: 25px;
-    }`
+    }
+    .alert-card {
+      background-color: #ffeaa7;
+      border: 1px solid #fdcb6e;
+      margin-bottom: 16px;
+    }
+    `
   ]
 })
 export class CountryTableComponent {

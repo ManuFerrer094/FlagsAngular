@@ -6,7 +6,7 @@
 
 <div *ngIf="country; else loading">
   <div class="row">
-    <h1>Flag of {{ country.name.common }}</h1>
+    <h1>{{ country.name.common }}</h1>
     <hr>
     <div class="col-8">
       <p>
@@ -28,18 +28,20 @@
             <ng-container *ngFor="let border of country.borders; let i = index; let last = last">
               <a [routerLink]="['/countries', 'by', border]">{{ getCountryName(border) }}</a>{{ !last ? (i === country.borders.length - 2 ? ' and ' : ', ') : '' }}
             </ng-container>.
-          </ng-container>{{country.flags.alt}}
+          </ng-container>
         </ng-container>
         Continue reading to discover more about {{ country.name.common }} and its fascinating details.
       </p>
+      <h2>Flag of {{ country.name.common }}</h2>
+      <p>{{country.flags.alt}}</p>
       <div class="container flag-container">
-        <img *ngIf="country.flags?.svg" [src]="country.flags.svg" [alt]="country.name.common" [title]="country.name.common" class="img" width="100%" height="auto">
+        <img *ngIf="country.flags?.svg" [src]="country.flags.svg" [alt]="country.name.common" matTooltip="{{ country.name.common }}" class="img" width="100%" height="auto">
         <span *ngIf="!country.flags?.svg">Not available</span>
       </div>
       <div class="col">
         <div class="row">
           <div class="col-12">
-            <h3>General Details</h3>
+            <h2>General Details</h2>
             <p>
               In {{ country.name.common }}, you'll find the following ISO codes: <strong>{{ country.cca2 }}</strong>, <strong>{{ country.ccn3 }}</strong>, and <strong>{{ country.cca3 }}</strong>. Additionally, the International Olympic Committee code is <strong>{{ country.cioc }}</strong>. It holds the status of <strong>{{ country.status }}</strong> and is {{ country.unMember ? 'a proud member' : 'not a member' }} of the United Nations. You can reach this country by dialing the IDD telephone code <strong>{{ country.idd.root }}{{ country.idd.suffixes[0] }}</strong>.
 
@@ -49,48 +51,48 @@
               </span>
               The vehicles in {{ country.name.common }} are easily recognizable by the symbol <strong>{{ country.car?.signs?.length ? country.car.signs.join(', ') : 'not specified' }}</strong>.
             </p>
-            <ul class="list-group">
-              <li class="list-group-item">
+            <mat-lis class="list-group">
+              <mat-list-item class="list-group-item">
                 <div class="flag-icon-container" id="flagContainer">
                   <span class="flag-icon-text"><strong>Flag: </strong> {{ country.flag }}</span>
                 </div>
-              </li>
-              <li class="list-group-item" *ngIf="!isNotAvailable(country.name.common)"><strong>Name (Common): </strong> {{ country.name.common }}</li>
-              <li class="list-group-item" *ngIf="!isNotAvailable(country.name.official)"><strong>Name (Official): </strong> {{ country.name.official }}</li>
-              <li class="list-group-item" *ngIf="!isNotAvailable(country.tld[0])"><strong>Top Level Domain: </strong> {{ country.tld[0] }}</li>
-              <li class="list-group-item" *ngIf="!isNotAvailable(country.cca2) && !isNotAvailable(country.ccn3) && !isNotAvailable(country.cca3) && !isNotAvailable(country.cioc)">
+              </mat-list-item>
+              <mat-list-item class="list-group-item" *ngIf="!isNotAvailable(country.name.common)"><strong>Name (Common): </strong> {{ country.name.common }}</mat-list-item>
+              <mat-list-item class="list-group-item" *ngIf="!isNotAvailable(country.name.official)"><strong>Name (Official): </strong> {{ country.name.official }}</mat-list-item>
+              <mat-list-item class="list-group-item" *ngIf="!isNotAvailable(country.tld[0])"><strong>Top Level Domain: </strong> {{ country.tld[0] }}</mat-list-item>
+              <mat-list-item class="list-group-item" *ngIf="!isNotAvailable(country.cca2) && !isNotAvailable(country.ccn3) && !isNotAvailable(country.cca3) && !isNotAvailable(country.cioc)">
                   <strong>ISO Codes: </strong> {{ country.cca2 }}, {{ country.ccn3 }}, {{ country.cca3 }}, {{ country.cioc }}
-              </li>
-              <li class="list-group-item" *ngIf="!isNotAvailable(country.cioc)"><strong>IOC Code: </strong> {{ country.cioc }}</li>
-              <li class="list-group-item">
+              </mat-list-item>
+              <mat-list-item class="list-group-item" *ngIf="!isNotAvailable(country.cioc)"><strong>IOC Code: </strong> {{ country.cioc }}</mat-list-item>
+              <mat-list-item class="list-group-item">
                   <strong>Independence: </strong>
                   <span [ngClass]="{'bg-green': country.independent === true, 'bg-red': country.independent === false}">
                       {{ country.independent }}
                   </span>
-              </li>
-              <li class="list-group-item" *ngIf="!isNotAvailable(country.status)"><strong>Status: </strong> {{ country.status }}</li>
-              <li class="list-group-item">
+              </mat-list-item>
+              <mat-list-item class="list-group-item" *ngIf="!isNotAvailable(country.status)"><strong>Status: </strong> {{ country.status }}</mat-list-item>
+              <mat-list-item class="list-group-item">
                   <strong>UN Member: </strong>
                   <span [ngClass]="{'bg-green': country.unMember === true, 'bg-red': country.unMember === false}">
                       {{ country.unMember }}
                   </span>
-              </li>
-              <li class="list-group-item" *ngIf="!isNotAvailable(country.idd.root) && !isNotAvailable(country.idd.suffixes[0])"><strong>IDD Code: </strong> {{ country.idd.root }}{{ country.idd.suffixes[0] }}</li>
-              <li class="list-group-item" *ngIf="country.car?.signs && country.car.signs.length">
+              </mat-list-item>
+              <mat-list-item class="list-group-item" *ngIf="!isNotAvailable(country.idd.root) && !isNotAvailable(country.idd.suffixes[0])"><strong>IDD Code: </strong> {{ country.idd.root }}{{ country.idd.suffixes[0] }}</mat-list-item>
+              <mat-list-item class="list-group-item" *ngIf="country.car?.signs && country.car.signs.length">
                   <strong>Vehicle Signs: </strong> {{ country.car.signs.join(', ') }}
-              </li>
-              <li class="list-group-item">
+              </mat-list-item>
+              <mat-list-item class="list-group-item">
                   <strong>Driving Side: </strong>
                   <span [ngClass]="{'bg-left': country.car?.side === 'left', 'bg-right': country.car?.side === 'right'}">
                       {{ country.car?.side || 'Not available' }}
                   </span>
-              </li>
-              <li class="list-group-item" *ngIf="!isNotAvailable(country.postalCode?.format)"><strong>Postal Code (Format): </strong> {{ country.postalCode?.format }}</li>
-              <li class="list-group-item" *ngIf="!isNotAvailable(country.postalCode?.regex)"><strong>Postal Code (Regex): </strong> {{ country.postalCode?.regex }}</li>
-          </ul>
+              </mat-list-item>
+              <mat-list-item class="list-group-item" *ngIf="!isNotAvailable(country.postalCode?.format)"><strong>Postal Code (Format): </strong> {{ country.postalCode?.format }}</mat-list-item>
+              <mat-list-item class="list-group-item" *ngIf="!isNotAvailable(country.postalCode?.regex)"><strong>Postal Code (Regex): </strong> {{ country.postalCode?.regex }}</mat-list-item>
+          </mat-lis>
           </div>
           <div class="col-12">
-            <h3>Geographical Details</h3>
+            <h2>Geographical Details</h2>
             <p>
               Welcome to <strong>{{ country.name.common }}</strong>! The capital, <strong>{{ country.capital[0] }}</strong>, has various alternative spellings, including <strong>{{ country.altSpellings.join(', ') }}</strong>. This picturesque country is situated in the region of <strong>{{ country.region }}</strong>, specifically in the subregion of <strong>{{ country.subregion }}</strong>.
 
@@ -103,53 +105,53 @@
               Delve into its daily life set by the time zone <strong>{{ country.timezones.join(', ') }}</strong>. This captivating destination spans across the continents of <strong>{{ country.continents.join(', ') }}</strong>, with the week kicking off on <strong>{{ country.startOfWeek || 'Not available' }}</strong>.
               Bonus: For those curious about the capital's exact location, it's pinpointed at [<strong>{{ country.capitalInfo?.latlng?.join(', ') }}</strong>].
             </p>
-            <ul class="list-group">
-              <li class="list-group-item" *ngIf="!isNotAvailable(country.capital[0])"><strong>Capital: </strong> {{ country.capital[0] }}</li>
-              <li class="list-group-item"><strong>Alternative Spellings: </strong> {{ country.altSpellings.join(', ') }}</li>
-              <li class="list-group-item" *ngIf="!isNotAvailable(country.region)"><strong>Region: </strong> {{ country.region }}</li>
-              <li class="list-group-item" *ngIf="!isNotAvailable(country.subregion)"><strong>Subregion: </strong> {{ country.subregion }}</li>
-              <li class="list-group-item" *ngIf="!isNotAvailable(country.languages?.eng)"><strong>Languages: </strong> {{ country.languages?.eng }}</li>
-              <li class="list-group-item"><strong>Latitude/Longitude: </strong> {{ country.latlng[0] }}, {{ country.latlng[1] }}</li>
-              <li class="list-group-item">
+            <mat-lis class="list-group">
+              <mat-list-item class="list-group-item" *ngIf="!isNotAvailable(country.capital[0])"><strong>Capital: </strong> {{ country.capital[0] }}</mat-list-item>
+              <mat-list-item class="list-group-item"><strong>Alternative Spellings: </strong> {{ country.altSpellings.join(', ') }}</mat-list-item>
+              <mat-list-item class="list-group-item" *ngIf="!isNotAvailable(country.region)"><strong>Region: </strong> {{ country.region }}</mat-list-item>
+              <mat-list-item class="list-group-item" *ngIf="!isNotAvailable(country.subregion)"><strong>Subregion: </strong> {{ country.subregion }}</mat-list-item>
+              <mat-list-item class="list-group-item" *ngIf="!isNotAvailable(country.languages?.eng)"><strong>Languages: </strong> {{ country.languages?.eng }}</mat-list-item>
+              <mat-list-item class="list-group-item"><strong>Latitude/Longitude: </strong> {{ country.latlng[0] }}, {{ country.latlng[1] }}</mat-list-item>
+              <mat-list-item class="list-group-item">
                   <strong>Landlocked: </strong>
                   <span [ngClass]="{'bg-green': country.landlocked === true, 'bg-red': country.landlocked === false}">
                       {{ country.landlocked }}
                   </span>
-              </li>
-              <li class="list-group-item" *ngIf="!isNotAvailable(country.area)"><strong>Area: </strong> {{ country.area }} km²</li>
-              <li class="list-group-item" *ngIf="!isNotAvailable(country.population)"><strong>Population: </strong> {{ country.population }}</li>
-              <li class="list-group-item" *ngIf="country.gini && !isNotAvailable(country.gini['2015'])"><strong>Gini (2015): </strong> {{ country.gini['2015'] }}</li>
-              <li class="list-group-item" *ngIf="!isNotAvailable(country.demonyms?.eng?.m)"><strong>Demonyms (English): </strong> {{ country.demonyms?.eng?.m }}</li>
-              <li class="list-group-item" *ngIf="!isNotAvailable(country.demonyms?.fra?.m)"><strong>Demonyms (French): </strong> {{ country.demonyms?.fra?.m }}</li>
-              <li class="list-group-item" *ngIf="!isNotAvailable(country.translations)"><strong>Translations (Common): </strong> {{ country.translations }}</li>
-              <li class="list-group-item"><strong>Timezones: </strong> {{ country.timezones.join(', ') }}</li>
-              <li class="list-group-item"><strong>Continents: </strong> {{ country.continents.join(', ') }}</li>
-              <li class="list-group-item" *ngIf="!isNotAvailable(country.startOfWeek)"><strong>Start of the Week: </strong> {{ country.startOfWeek }}</li>
-              <li class="list-group-item" *ngIf="country.capitalInfo && country.capitalInfo.latlng && country.capitalInfo.latlng.length > 0">
+              </mat-list-item>
+              <mat-list-item class="list-group-item" *ngIf="!isNotAvailable(country.area)"><strong>Area: </strong> {{ country.area }} km²</mat-list-item>
+              <mat-list-item class="list-group-item" *ngIf="!isNotAvailable(country.population)"><strong>Population: </strong> {{ country.population }}</mat-list-item>
+              <mat-list-item class="list-group-item" *ngIf="country.gini && !isNotAvailable(country.gini['2015'])"><strong>Gini (2015): </strong> {{ country.gini['2015'] }}</mat-list-item>
+              <mat-list-item class="list-group-item" *ngIf="!isNotAvailable(country.demonyms?.eng?.m)"><strong>Demonyms (English): </strong> {{ country.demonyms?.eng?.m }}</mat-list-item>
+              <mat-list-item class="list-group-item" *ngIf="!isNotAvailable(country.demonyms?.fra?.m)"><strong>Demonyms (French): </strong> {{ country.demonyms?.fra?.m }}</mat-list-item>
+              <mat-list-item class="list-group-item" *ngIf="!isNotAvailable(country.translations)"><strong>Translations (Common): </strong> {{ country.translations }}</mat-list-item>
+              <mat-list-item class="list-group-item"><strong>Timezones: </strong> {{ country.timezones.join(', ') }}</mat-list-item>
+              <mat-list-item class="list-group-item"><strong>Continents: </strong> {{ country.continents.join(', ') }}</mat-list-item>
+              <mat-list-item class="list-group-item" *ngIf="!isNotAvailable(country.startOfWeek)"><strong>Start of the Week: </strong> {{ country.startOfWeek }}</mat-list-item>
+              <mat-list-item class="list-group-item" *ngIf="country.capitalInfo && country.capitalInfo.latlng && country.capitalInfo.latlng.length > 0">
                   <strong>Capital Info (Lat/Lng): </strong> [{{ country.capitalInfo.latlng.join(', ') }}]
-              </li>
-          </ul>
+              </mat-list-item>
+          </mat-lis>
           </div>
           <section>
             <h3>Downloads</h3>
             <p>Download the flag of {{country.name.common}} and the coat of arms in different formats:</p>
 
-            <ul class="list-group">
-              <li class="list-group-item">
-                <strong>Flag:</strong>
+            <mat-list class="list-group">
+              <mat-list-item class="list-group-item">
+                <strong>Flag: </strong>
                 <span *ngIf="!country.flags?.png">Not available</span>
-                <img *ngIf="country.flags?.png" [src]="country.flags?.png" [alt]="country.name.common" [title]="country.name.common" class="thumbnail">
-                <button *ngIf="country.flags?.png" class="btn btn-primary" (click)="downloadImage(country.flags?.png, 'flag-' + country.name.common.toLowerCase() + '.png')">PNG</button>
-                <button *ngIf="country.flags?.svg" class="btn btn-primary" (click)="downloadImage(country.flags?.svg, 'flag-' + country.name.common.toLowerCase() + '.svg')">SVG</button>
-              </li>
-              <li class="list-group-item">
-                <strong>Coat of Arms:</strong>
+                <img *ngIf="country.flags?.png" [src]="country.flags?.png" [alt]="country.name.common" matTooltip="{{ country.name.common }}" class="thumbnail">
+                <button mat-raised-button color="primary" *ngIf="country.flags?.png" class="btn-download" (click)="downloadImage(country.flags?.png, 'flag-' + country.name.common.toLowerCase() + '.png')">PNG</button>
+                <button mat-raised-button color="primary" *ngIf="country.flags?.svg" class="btn-download" (click)="downloadImage(country.flags?.svg, 'flag-' + country.name.common.toLowerCase() + '.svg')">SVG</button>
+              </mat-list-item>
+              <mat-list-item class="list-group-item">
+                <strong>Coat of Arms: </strong>
                 <span *ngIf="!country.coatOfArms?.png">Not available</span>
-                <img *ngIf="country.coatOfArms?.png" [src]="country.coatOfArms?.png" [alt]="country.name.common" [title]="country.name.common" class="thumbnail">
-                <button *ngIf="country.coatOfArms?.png" class="btn btn-primary" (click)="downloadImage(country.coatOfArms?.png, 'coatofarms-' + country.name.common.toLowerCase() + '.png')">PNG</button>
-                <button *ngIf="country.coatOfArms?.svg" class="btn btn-primary" (click)="downloadImage(country.coatOfArms?.svg, 'coatofarms-' + country.name.common.toLowerCase() + '.svg')">SVG</button>
-              </li>
-            </ul>
+                <img *ngIf="country.coatOfArms?.png" [src]="country.coatOfArms?.png" [alt]="country.name.common" matTooltip="{{ country.name.common }}" class="thumbnail">
+                <button mat-raised-button color="primary" *ngIf="country.coatOfArms?.png" class="btn-download" (click)="downloadImage(country.coatOfArms?.png, 'coatofarms-' + country.name.common.toLowerCase() + '.png')">PNG</button>
+                <button mat-raised-button color="primary" *ngIf="country.coatOfArms?.svg" class="btn-download" (click)="downloadImage(country.coatOfArms?.svg, 'coatofarms-' + country.name.common.toLowerCase() + '.svg')">SVG</button>
+              </mat-list-item>
+            </mat-list>
           </section>
 
         </div>
@@ -162,8 +164,8 @@
         [options]="options"
       ></google-map>
 
-      <button (click)="zoomIn()" class="btn-maps">Zoom in</button>
-      <button (click)="zoomOut()" class="btn-maps">Zoom out</button>
+      <button mat-raised-button color="primary" (click)="zoomIn()" class="btn">Zoom in</button>
+      <button mat-raised-button color="primary" (click)="zoomOut()" class="btn">Zoom out</button>
         <ng-container *ngIf="isCountryDefined()">
           <h3>Neighboring Countries</h3>
         </ng-container>
@@ -171,7 +173,7 @@
           <ng-container *ngFor="let border of country.borders; let i = index">
             <div class="col-md-4">
               <a [routerLink]="['/countries', 'by', border]" class="country-border">
-                <img [src]="getBorderFlagUrl(border)" [alt]="getCountryName(border)" [title]="country.name.common" class="flag-image">
+                <img [src]="getBorderFlagUrl(border)" [alt]="getCountryName(border)" matTooltip="{{ country.name.common }}" class="flag-image">
               </a>
               <h5>{{ getCountryName(border) }}</h5>
             </div>
@@ -183,7 +185,7 @@
     <div class="col-4 fixed-column">
       <div class="container flag-container">
         <h3>Coat of Arms of {{ country.name.common }}</h3>
-        <img *ngIf="country.coatOfArms?.png" [src]="country.coatOfArms?.png" [alt]="country.name.common" [title]="country.name.common" class="img" width="100%" height="auto">
+        <img *ngIf="country.coatOfArms?.png" [src]="country.coatOfArms?.png" [alt]="country.name.common" matTooltip="{{ country.name.common }}" class="img" width="100%" height="auto">
         <span *ngIf="!country.coatOfArms?.png">Not available</span>
         <div *ngIf="country; else loading">
           <div class="row mt-2">

@@ -1,6 +1,10 @@
-<div *ngIf="countries.length === 0; else table" class="alert alert-warning text-center">
-  No countries to display
-</div>
+<ng-container *ngIf="countries.length === 0; else table">
+  <mat-card class="alert-card">
+    <mat-card-content>
+      <p class="text-center">No countries to display</p>
+    </mat-card-content>
+  </mat-card>
+</ng-container>
 
 <ng-template #table>
   <table class="table table-hover">
@@ -24,7 +28,7 @@
           {{ country.flag }}
         </td>
         <td>
-          <img [src]="country.flags.svg" [alt]="country.name.common" [title]="country.name.common">
+          <img [src]="country.flags.svg" [alt]="country.name.common" matTooltip="{{ country.name.common }}">
         </td>
         <td>{{ country.name.common }}</td>
         <td>{{ country.capital }}</td>

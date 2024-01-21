@@ -1,15 +1,16 @@
 <h1>Discover Countries by Region</h1>
-<p>Explore the planet by regions and delve into the geographical diversity that defines our world. From lush tropical forests to vast deserts, discover how regions across the globe have shaped cultures and landscapes. Join this exciting journey that highlights the unique connection between countries within every corner of our planet.</p>
 <hr>
+<p>Explore the planet by regions and delve into the geographical diversity that defines our world. From lush tropical forests to vast deserts, discover how regions across the globe have shaped cultures and landscapes. Join this exciting journey that highlights the unique connection between countries within every corner of our planet.</p>
 
 <div class="row">
   <div class="col text-center">
       <!-- SearchBox -->
       <button *ngFor="let region of regions"
-        class="btn mx-2"
-        [ngClass]="{ 'btn-outline-primary': selectedRegion === region }"
-        (click)="searchByRegion(region)">
-        {{ region }}
+      mat-raised-button
+      color="primary"
+      [ngClass]="{ 'mat-primary': selectedRegion === region }"
+      (click)="searchByRegion(region)">
+      {{ region }}
       </button>
   </div>
 </div>

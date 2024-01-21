@@ -1,9 +1,10 @@
-<!-- (keyup.enter)="emitValue( txtInput.value )" -->
-<input
-  type="text"
-  class="form-control"
-  [value]="initialValue"
-  [placeholder]="placeholder"
-  (keyup)="onKeyPress( txtInput.value )"
-  #txtInput
->
+<mat-form-field class="example-full-width">
+  <input
+    matInput
+    type="text"
+    [value]="initialValue"
+    [placeholder]="placeholder"
+    (keyup)="onKeyPress(txtInput.value)"
+    #txtInput
+  >
+</mat-form-field>

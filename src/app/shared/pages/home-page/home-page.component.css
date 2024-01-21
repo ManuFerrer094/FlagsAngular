@@ -1,5 +1,6 @@
 .flag-container {
   margin-top: 10%;
+  max-width: 90%;
 }
 
 .flag-container .row {
@@ -8,10 +9,8 @@
 }
 
 .flag-container .col-md-4 {
-  width: 23%;
+  max-width: 25%;
   box-sizing: border-box;
-  padding: 5px;
-  margin: 1%;
 }
 
 .flag-container .flag-link {
@@ -31,19 +30,16 @@
 }
 
 .flag-container .flag-image {
-  width: 100%;
+  width: 240px;
   height: 120px;
   object-fit: cover;
   border: 1px solid lightgray;
 }
 
-.flag-container .card-body {
-  text-align: center;
-}
-
 .flag-container .card-text {
   margin: 10px 0;
   font-size: 1.2rem;
+  float: left;
 }
 
 @media (max-width: 768px) {
@@ -53,21 +49,6 @@
   }
 }
 
-/* Estilo para el tooltip */
 img[title] {
   position: relative;
-}
-
-/* Estilo del texto del tooltip */
-img[title]:hover::after {
-  content: attr(title);
-  position: absolute;
-  background-color: #333;
-  color: #fff;
-  padding: 5px;
-  border-radius: 5px;
-  white-space: nowrap;
-  z-index: 1;
-  left: 50%;
-  transform: translateX(-50%);
 }

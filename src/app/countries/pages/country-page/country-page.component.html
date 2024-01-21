@@ -10,26 +10,27 @@
     <hr>
     <div class="col-8">
       <p>
-        {{ country.name.common }} is a nation located in the region of <strong>{{ country.region }}</strong>,
-        specifically in <strong>{{ country.subregion }}</strong>. With a population of <strong>{{ country.population | number }}</strong> people and a land area of
+        {{ country.name.common }} is a nation situated in the region of <strong>{{ country.region }}</strong>,
+        specifically in <strong>{{ country.subregion }}</strong>. It's home to around <strong>{{ country.population | number }}</strong> people and spans an area of
         <strong>{{ country.area | number }}</strong> km².
         <ng-container *ngIf="country.borders && country.borders.length > 0">
           <ng-container *ngIf="country.borders.length === 1">
-            Its neighboring country is:
+            It shares its border with:
             <a [routerLink]="['/countries', 'by', country.borders[0]]">{{ getCountryName(country.borders[0]) }}</a>
           </ng-container>
           <ng-container *ngIf="country.borders.length === 2">
-            Its neighboring countries are:
+            It has neighboring countries:
             <a [routerLink]="['/countries', 'by', country.borders[0]]">{{ getCountryName(country.borders[0]) }}</a> and
             <a [routerLink]="['/countries', 'by', country.borders[1]]">{{ getCountryName(country.borders[1]) }}</a>
           </ng-container>
           <ng-container *ngIf="country.borders.length > 2">
-            Its neighboring countries are:
+            It shares borders with several countries:
             <ng-container *ngFor="let border of country.borders; let i = index; let last = last">
               <a [routerLink]="['/countries', 'by', border]">{{ getCountryName(border) }}</a>{{ !last ? (i === country.borders.length - 2 ? ' and ' : ', ') : '' }}
-            </ng-container>
-          </ng-container> {{country.flags.alt}}
+            </ng-container>.
+          </ng-container>{{country.flags.alt}}
         </ng-container>
+        Continue reading to discover more about {{ country.name.common }} and its fascinating details.
       </p>
       <div class="container flag-container">
         <img *ngIf="country.flags?.svg" [src]="country.flags.svg" [alt]="country.name.common" [title]="country.name.common" class="img" width="100%" height="auto">
@@ -40,90 +41,94 @@
           <div class="col-12">
             <h3>General Details</h3>
             <p>
-              In {{ country.name.common }}, the ISO codes are <strong>{{ country.cca2 }}</strong>, <strong>{{ country.ccn3 }}</strong>, <strong>{{ country.cca3 }}</strong>, and the International Olympic Committee code is <strong>{{ country.cioc }}</strong>. It has a status of <strong>{{ country.status }}</strong>, and it {{ country.unMember ? 'is' : 'is not' }} a member of the United Nations. The IDD telephone code is <strong>{{ country.idd.root }}{{ country.idd.suffixes[0] }}</strong>.
+              In {{ country.name.common }}, you'll find the following ISO codes: <strong>{{ country.cca2 }}</strong>, <strong>{{ country.ccn3 }}</strong>, and <strong>{{ country.cca3 }}</strong>. Additionally, the International Olympic Committee code is <strong>{{ country.cioc }}</strong>. It holds the status of <strong>{{ country.status }}</strong> and is {{ country.unMember ? 'a proud member' : 'not a member' }} of the United Nations. You can reach this country by dialing the IDD telephone code <strong>{{ country.idd.root }}{{ country.idd.suffixes[0] }}</strong>.
 
-              Regarding driving, this country
+              When it comes to driving, keep in mind that people here
               <span>
-                <strong>{{ country.car?.side === 'left' ? 'drives on the left side of the road' : (country.car?.side === 'right' ? 'drives on the right side of the road' : 'Not available') }}</strong>.
+                <strong>{{ country.car?.side === 'left' ? 'drive on the left side of the road' : (country.car?.side === 'right' ? 'drive on the right side of the road' : 'don\'t have specific regulations') }}</strong>.
               </span>
-              {{ country.name.common }} has the symbol <strong>{{ country.car?.signs?.length ? country.car.signs.join(', ') : 'Not available' }}</strong> on its vehicles.
+              The vehicles in {{ country.name.common }} are easily recognizable by the symbol <strong>{{ country.car?.signs?.length ? country.car.signs.join(', ') : 'not specified' }}</strong>.
             </p>
             <ul class="list-group">
               <li class="list-group-item">
                 <div class="flag-icon-container" id="flagContainer">
                   <span class="flag-icon-text"><strong>Flag: </strong> {{ country.flag }}</span>
-                  <button class="btn btn-primary icon-btn" (click)="copyToClipboard(country.flag)">
-                    <i class="fas fa-copy"></i>
-                  </button>
                 </div>
               </li>
-              <li class="list-group-item"><strong>Name (Common): </strong> {{ country.name.common }}</li>
-              <li class="list-group-item"><strong>Name (Official): </strong> {{ country.name.official }}</li>
-              <li class="list-group-item"><strong>Top Level Domain: </strong> {{ country.tld[0] }}</li>
-              <li class="list-group-item"><strong>ISO Codes: </strong> {{ country.cca2 }}, {{ country.ccn3 }}, {{ country.cca3 }}, {{ country.cioc }}</li>
-              <li class="list-group-item"><strong>IOC Code: </strong> {{ country.cioc }}</li>
-              <li class="list-group-item">
-                <strong>Independence: </strong>
-                <span [ngClass]="{'bg-green': country.independent === true, 'bg-red': country.independent === false}">
-                  {{ country.independent }}
-                </span>
+              <li class="list-group-item" *ngIf="!isNotAvailable(country.name.common)"><strong>Name (Common): </strong> {{ country.name.common }}</li>
+              <li class="list-group-item" *ngIf="!isNotAvailable(country.name.official)"><strong>Name (Official): </strong> {{ country.name.official }}</li>
+              <li class="list-group-item" *ngIf="!isNotAvailable(country.tld[0])"><strong>Top Level Domain: </strong> {{ country.tld[0] }}</li>
+              <li class="list-group-item" *ngIf="!isNotAvailable(country.cca2) && !isNotAvailable(country.ccn3) && !isNotAvailable(country.cca3) && !isNotAvailable(country.cioc)">
+                  <strong>ISO Codes: </strong> {{ country.cca2 }}, {{ country.ccn3 }}, {{ country.cca3 }}, {{ country.cioc }}
               </li>
-              <li class="list-group-item"><strong>Status: </strong> {{ country.status }}</li>
+              <li class="list-group-item" *ngIf="!isNotAvailable(country.cioc)"><strong>IOC Code: </strong> {{ country.cioc }}</li>
               <li class="list-group-item">
-                <strong>UN Member: </strong>
-                <span [ngClass]="{'bg-green': country.unMember === true, 'bg-red': country.unMember === false}">
-                  {{ country.unMember }}
-                </span>
+                  <strong>Independence: </strong>
+                  <span [ngClass]="{'bg-green': country.independent === true, 'bg-red': country.independent === false}">
+                      {{ country.independent }}
+                  </span>
               </li>
-              <li class="list-group-item"><strong>IDD Code: </strong> {{ country.idd.root }}{{ country.idd.suffixes[0] }}</li>
-              <li class="list-group-item"><strong>Vehicle Signs: </strong> {{ country.car?.signs?.length ? country.car.signs.join(', ') : 'Not available' }}</li>
+              <li class="list-group-item" *ngIf="!isNotAvailable(country.status)"><strong>Status: </strong> {{ country.status }}</li>
               <li class="list-group-item">
-                <strong>Driving Side: </strong>
-                <span [ngClass]="{'bg-left': country.car?.side === 'left', 'bg-right': country.car?.side === 'right'}">
-                  {{ country.car?.side || 'Not available' }}
-                </span>
+                  <strong>UN Member: </strong>
+                  <span [ngClass]="{'bg-green': country.unMember === true, 'bg-red': country.unMember === false}">
+                      {{ country.unMember }}
+                  </span>
               </li>
-              <li class="list-group-item"><strong>Postal Code (Format): </strong> {{ country.postalCode?.format }}</li>
-              <li class="list-group-item"><strong>Postal Code (Regex): </strong> {{ country.postalCode?.regex }}</li>
-            </ul>
+              <li class="list-group-item" *ngIf="!isNotAvailable(country.idd.root) && !isNotAvailable(country.idd.suffixes[0])"><strong>IDD Code: </strong> {{ country.idd.root }}{{ country.idd.suffixes[0] }}</li>
+              <li class="list-group-item" *ngIf="country.car?.signs && country.car.signs.length">
+                  <strong>Vehicle Signs: </strong> {{ country.car.signs.join(', ') }}
+              </li>
+              <li class="list-group-item">
+                  <strong>Driving Side: </strong>
+                  <span [ngClass]="{'bg-left': country.car?.side === 'left', 'bg-right': country.car?.side === 'right'}">
+                      {{ country.car?.side || 'Not available' }}
+                  </span>
+              </li>
+              <li class="list-group-item" *ngIf="!isNotAvailable(country.postalCode?.format)"><strong>Postal Code (Format): </strong> {{ country.postalCode?.format }}</li>
+              <li class="list-group-item" *ngIf="!isNotAvailable(country.postalCode?.regex)"><strong>Postal Code (Regex): </strong> {{ country.postalCode?.regex }}</li>
+          </ul>
           </div>
           <div class="col-12">
             <h3>Geographical Details</h3>
             <p>
-              In <strong>{{ country.name.common }}</strong>, whose capital is <strong>{{ country.capital[0] }}</strong>, alternative spellings include <strong>{{ country.altSpellings.join(', ') }}</strong>.
-              This country is located in the region of <strong>{{ country.region }}</strong> and specifically in the subregion of <strong>{{ country.subregion }}</strong>.
-              The geographical coordinates of <strong>{{ country.name.common }}</strong> are <strong>{{ country.latlng[0] }}</strong> latitude and <strong>{{ country.latlng[1] }}</strong> longitude.
-              <span>
-                <b>{{ country.landlocked ? 'It is a landlocked country.' : 'It is a country with access to the sea.' }}</b>
-              </span> It has a land area of <strong>{{ country.area }}</strong> km² and a population of <strong>{{ country.population }}</strong> inhabitants.
-              The demonyms are <strong>{{ country.demonyms?.eng?.m || 'Not available' }}</strong> in English and <strong>{{ country.demonyms?.fra?.m || 'Not available' }}</strong> in French. The country is in the time zone <strong>{{ country.timezones.join(', ') }}</strong>. It belongs to the continents of <strong>{{ country.continents.join(', ') }}</strong>, and the start of the week is <strong>{{ country.startOfWeek || 'Not available' }}</strong>.
+              Welcome to <strong>{{ country.name.common }}</strong>! The capital, <strong>{{ country.capital[0] }}</strong>, has various alternative spellings, including <strong>{{ country.altSpellings.join(', ') }}</strong>. This picturesque country is situated in the region of <strong>{{ country.region }}</strong>, specifically in the subregion of <strong>{{ country.subregion }}</strong>.
 
-              Information about the capital, in terms of coordinates, is [<strong>{{ country.capitalInfo?.latlng?.join(', ') }}</strong>].
+              Marvel at the geographical beauty with coordinates at <strong>{{ country.latlng[0] }} latitude</strong> and <strong>{{ country.latlng[1] }} longitude</strong>.
+              <span>
+                <b>{{ country.landlocked ? 'Embrace the charm of this landlocked nation.' : 'Explore the coastal wonders of this sea-bound paradise.' }}</b>
+              </span>
+              Covering an area of <strong>{{ country.area }} km²</strong>, it hosts a vibrant population of <strong>{{ country.population }}</strong> inhabitants.
+              Demonyms for locals include <strong>{{ country.demonyms?.eng?.m || 'Not available' }}</strong> in English and <strong>{{ country.demonyms?.fra?.m || 'Not available' }}</strong> in French.
+              Delve into its daily life set by the time zone <strong>{{ country.timezones.join(', ') }}</strong>. This captivating destination spans across the continents of <strong>{{ country.continents.join(', ') }}</strong>, with the week kicking off on <strong>{{ country.startOfWeek || 'Not available' }}</strong>.
+              Bonus: For those curious about the capital's exact location, it's pinpointed at [<strong>{{ country.capitalInfo?.latlng?.join(', ') }}</strong>].
             </p>
             <ul class="list-group">
-                <li class="list-group-item"><strong>Capital: </strong> {{ country.capital[0] }}</li>
-                <li class="list-group-item"><strong>Alternative Spellings: </strong> {{ country.altSpellings.join(', ') }}</li>
-                <li class="list-group-item"><strong>Region: </strong> {{ country.region }}</li>
-                <li class="list-group-item"><strong>Subregion: </strong> {{ country.subregion }}</li>
-                <li class="list-group-item"><strong>Languages: </strong> {{ country.languages?.eng || 'Not available' }}</li>
-                <li class="list-group-item"><strong>Latitude/Longitude: </strong> {{ country.latlng[0] }}, {{ country.latlng[1] }}</li>
-                <li class="list-group-item">
+              <li class="list-group-item" *ngIf="!isNotAvailable(country.capital[0])"><strong>Capital: </strong> {{ country.capital[0] }}</li>
+              <li class="list-group-item"><strong>Alternative Spellings: </strong> {{ country.altSpellings.join(', ') }}</li>
+              <li class="list-group-item" *ngIf="!isNotAvailable(country.region)"><strong>Region: </strong> {{ country.region }}</li>
+              <li class="list-group-item" *ngIf="!isNotAvailable(country.subregion)"><strong>Subregion: </strong> {{ country.subregion }}</li>
+              <li class="list-group-item" *ngIf="!isNotAvailable(country.languages?.eng)"><strong>Languages: </strong> {{ country.languages?.eng }}</li>
+              <li class="list-group-item"><strong>Latitude/Longitude: </strong> {{ country.latlng[0] }}, {{ country.latlng[1] }}</li>
+              <li class="list-group-item">
                   <strong>Landlocked: </strong>
                   <span [ngClass]="{'bg-green': country.landlocked === true, 'bg-red': country.landlocked === false}">
-                    {{ country.landlocked }}
+                      {{ country.landlocked }}
                   </span>
-                </li>
-                <li class="list-group-item"><strong>Area: </strong> {{ country.area }} km²</li>
-                <li class="list-group-item"><strong>Population: </strong> {{ country.population }}</li>
-                <li class="list-group-item"><strong>Gini (2015): </strong> {{ country.gini?.['2015'] || 'Not available' }}</li>
-                <li class="list-group-item"><strong>Demonyms (English): </strong> {{ country.demonyms?.eng?.m || 'Not available' }}</li>
-                <li class="list-group-item"><strong>Demonyms (French): </strong> {{ country.demonyms?.fra?.m || 'Not available' }}</li>
-                <li class="list-group-item"><strong>Translations (Common): </strong> {{ country.translations || 'Not available' }}</li>
-                <li class="list-group-item"><strong>Timezones: </strong> {{ country.timezones.join(', ') }}</li>
-                <li class="list-group-item"><strong>Continents: </strong> {{ country.continents.join(', ') }}</li>
-                <li class="list-group-item"><strong>Start of the Week: </strong> {{ country.startOfWeek || 'Not available' }}</li>
-                <li class="list-group-item"><strong>Capital Info (Lat/Lng): </strong> [{{ country.capitalInfo?.latlng?.join(', ') }}]</li>
-            </ul>
+              </li>
+              <li class="list-group-item" *ngIf="!isNotAvailable(country.area)"><strong>Area: </strong> {{ country.area }} km²</li>
+              <li class="list-group-item" *ngIf="!isNotAvailable(country.population)"><strong>Population: </strong> {{ country.population }}</li>
+              <li class="list-group-item" *ngIf="country.gini && !isNotAvailable(country.gini['2015'])"><strong>Gini (2015): </strong> {{ country.gini['2015'] }}</li>
+              <li class="list-group-item" *ngIf="!isNotAvailable(country.demonyms?.eng?.m)"><strong>Demonyms (English): </strong> {{ country.demonyms?.eng?.m }}</li>
+              <li class="list-group-item" *ngIf="!isNotAvailable(country.demonyms?.fra?.m)"><strong>Demonyms (French): </strong> {{ country.demonyms?.fra?.m }}</li>
+              <li class="list-group-item" *ngIf="!isNotAvailable(country.translations)"><strong>Translations (Common): </strong> {{ country.translations }}</li>
+              <li class="list-group-item"><strong>Timezones: </strong> {{ country.timezones.join(', ') }}</li>
+              <li class="list-group-item"><strong>Continents: </strong> {{ country.continents.join(', ') }}</li>
+              <li class="list-group-item" *ngIf="!isNotAvailable(country.startOfWeek)"><strong>Start of the Week: </strong> {{ country.startOfWeek }}</li>
+              <li class="list-group-item" *ngIf="country.capitalInfo && country.capitalInfo.latlng && country.capitalInfo.latlng.length > 0">
+                  <strong>Capital Info (Lat/Lng): </strong> [{{ country.capitalInfo.latlng.join(', ') }}]
+              </li>
+          </ul>
           </div>
           <section>
             <h3>Downloads</h3>
@@ -165,10 +170,10 @@
         <div class="row">
           <ng-container *ngFor="let border of country.borders; let i = index">
             <div class="col-md-4">
-              <h5>{{ getCountryName(border) }}</h5>
               <a [routerLink]="['/countries', 'by', border]" class="country-border">
                 <img [src]="getBorderFlagUrl(border)" [alt]="getCountryName(border)" [title]="country.name.common" class="flag-image">
               </a>
+              <h5>{{ getCountryName(border) }}</h5>
             </div>
           </ng-container>
         </div>

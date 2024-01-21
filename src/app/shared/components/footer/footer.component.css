@@ -1,0 +1,19 @@
+:root {
+  --footer-bg-light: #333;
+  --footer-color-light: white;
+  --footer-bg-dark: #1a1a1a;
+  --footer-color-dark: #ccc;
+}
+
+.footer {
+  background-color: var(--footer-bg-light);
+  color: var(--footer-color-light);
+  text-align: center;
+  padding: 10px;
+  bottom: 0;
+}
+
+.dark-mode .footer {
+  background-color: var(--footer-bg-dark);
+  color: var(--footer-color-dark);
+}

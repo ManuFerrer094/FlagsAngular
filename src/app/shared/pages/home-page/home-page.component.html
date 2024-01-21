@@ -1,8 +1,8 @@
 <div class="container">
   <section class="popular-countries">
-    <h2>Países Populares</h2>
-    <!-- home-page.component.html -->
     <div class="container flag-container">
+      <h1>Discover the World Through Flags</h1>
+      <p>Explore the fascinating world of flags and global information. Immerse yourself in the rich cultural diversity of each country, learn interesting facts, and discover wonders. Click on the flags to start your informative journey around the world!</p>
       <div class="row">
         <div class="col-md-4" *ngFor="let country of countries">
           <a [routerLink]="['/countries/by', country.cca3]" class="flag-link">

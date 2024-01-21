@@ -18,7 +18,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let country of countries; let i = index">
+      <tr *ngFor="let country of countries; let i = index" [routerLink]="['/countries/by', country.cca3]" style="cursor: pointer;">
         <td>{{ i + 1 }}</td>
         <td>
           {{ country.flag }}

@@ -25,7 +25,6 @@ export class ByCountryPageComponent implements OnInit {
       .subscribe( countries => {
         this.countries = countries;
       });
-
   }
 
 }

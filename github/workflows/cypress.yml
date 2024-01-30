@@ -1,0 +1,23 @@
+name: Cypress Tests
+
+on:
+  push:
+    branches:
+      - master  # Ejecutar las pruebas en cada push a la rama master
+  pull_request:
+    branches:
+      - master  # Ejecutar las pruebas en cada pull request hacia la rama master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Cypress tests
+        run: npm run tests.cy.ts
